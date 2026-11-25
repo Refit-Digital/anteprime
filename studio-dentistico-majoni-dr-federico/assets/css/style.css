@@ -1,0 +1,288 @@
+/* Studio Dentistico Majoni Dr. Federico — palette "Dolomia", one typeface */
+
+/* Atkinson Hyperlegible Next, SIL OFL 1.1, self-hosted (file da Fontsource), variabile 200–800 */
+@font-face {
+  font-family: "Atkinson Hyperlegible Next";
+  src: url("../fonts/atkinson-hyperlegible-next-latin-wght-normal.woff2") format("woff2");
+  font-weight: 200 800; font-style: normal; font-display: swap;
+}
+
+:root {
+  --c-paper:#F3F2EE; --c-surface:#FFFFFF; --c-ink:#1C2A33; --c-ink-soft:#4A5A64;
+  --c-rule:#C9CDCF; --c-ridge:#8A6A4F; --c-accent:#1F4E79; --c-accent-ink:#FFFFFF;
+  --c-alert:#8C2F1E; --c-alert-bg:#F6ECE8;
+  --c-card-edge:var(--c-ink-soft);
+  --font:"Atkinson Hyperlegible Next","Segoe UI",system-ui,-apple-system,Roboto,"Helvetica Neue",Arial,sans-serif;
+  --fs-00:clamp(0.9375rem,0.91rem + 0.12vw,1rem);       /* 15–16 fine print */
+  --fs-0:clamp(1.0625rem,1.01rem + 0.22vw,1.1875rem);   /* 17–19 body */
+  --fs-1:clamp(1.25rem,1.17rem + 0.35vw,1.5rem);        /* 20–24 h3, lead */
+  --fs-2:clamp(1.5rem,1.33rem + 0.7vw,2rem);            /* 24–32 h2 */
+  --fs-h1:clamp(1.75rem,1.45rem + 1.3vw,2.75rem);       /* 28–44 name */
+  --fs-tel:clamp(2.25rem,1.4rem + 3.6vw,4.5rem);        /* 36–72 the phone number */
+  --gutter:clamp(1rem,4vw,3rem);
+  --radius:4px;
+  --callbar-h:65px;   /* 8 + 48 + 8 padding + 1px top border */
+  --header-h:0px;    /* set >=1100px, where the header is sticky */
+  color-scheme:light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --c-paper:#141C21; --c-surface:#1C262C; --c-ink:#E6E7E3; --c-ink-soft:#A9B3B8;
+    --c-rule:#34424A; --c-ridge:#B8946F; --c-accent:#8DB8E0; --c-accent-ink:#0F1A22;
+    --c-alert:#F0A08C; --c-alert-bg:#2A1C19;
+  }
+}
+
+*,*::before,*::after { box-sizing:border-box; }
+[hidden] { display:none!important; }
+html {
+  font-size:100%; -webkit-text-size-adjust:100%; overflow-x:clip;
+  /* Keep focused/anchored content clear of the fixed call bar and of the cookie card.
+     --cookie-space is set by main.js while the card is open (distance from its top edge to the viewport bottom). */
+  scroll-padding-top:calc(var(--header-h) + 1rem);
+  scroll-padding-bottom:calc(max(var(--callbar-h) + env(safe-area-inset-bottom), var(--cookie-space, 0px)) + 1rem);
+}
+body {
+  margin:0; background:var(--c-paper); color:var(--c-ink);
+  font-family:var(--font); font-size:var(--fs-0); line-height:1.6;
+  overflow-x:clip;
+}
+img,svg { max-width:100%; }
+h1,h2,h3 { line-height:1.2; margin:0 0 .6em; text-wrap:balance; }
+h1 { font-size:var(--fs-h1); font-weight:500; letter-spacing:-0.005em; }
+h2 { font-size:var(--fs-2); font-weight:500; letter-spacing:-0.005em; }
+h3 { font-size:var(--fs-1); font-weight:600; line-height:1.3; margin-bottom:.35em; }
+p { margin:0 0 1em; max-width:64ch; text-wrap:pretty; }
+strong, b { font-weight:700; }
+a { color:var(--c-accent); text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:.2em; }
+a:hover { text-decoration-thickness:2px; }
+
+/* One accent: the focus ring is the gentian accent (about 8:1 on paper in both schemes) */
+:focus-visible { outline:3px solid var(--c-accent); outline-offset:3px; border-radius:2px; }
+
+.wrap { max-width:72rem; margin-inline:auto; padding-inline:var(--gutter); }
+.visually-hidden { position:absolute!important; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+.skip { position:absolute; left:1rem; top:-100px; z-index:100; background:var(--c-accent); color:var(--c-accent-ink); padding:.75rem 1rem; border-radius:var(--radius); font-weight:600; text-decoration:none; }
+.skip:focus { top:1rem; }
+
+.icon { width:20px; height:20px; flex:none; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; }
+
+/* ---------- Header ---------- */
+.site-header { border-bottom:1px solid var(--c-rule); }
+.site-header .bar { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:.25rem 1rem; min-height:56px; }
+.brand { color:var(--c-ink); text-decoration:none; display:flex; align-items:center; gap:.6rem; padding-block:.4rem; line-height:1.15; }
+.brand .mark { width:30px; height:30px; flex:none; fill:none; stroke:currentColor; stroke-width:2.4; stroke-linejoin:round; stroke-linecap:round; }
+.brand span { display:flex; flex-direction:column; }
+.brand b { font-weight:700; font-size:var(--fs-0); }
+.brand small { font-size:var(--fs-00); color:var(--c-ink-soft); }
+.head-tools { display:flex; align-items:center; gap:.5rem; }
+.lang-link { display:inline-flex; align-items:center; min-height:44px; padding-inline:.5rem; font-size:var(--fs-00); font-weight:600; }
+.call-head { display:inline-flex; align-items:center; justify-content:center; gap:.5rem; min-width:44px; min-height:44px; border-radius:22px; background:var(--c-accent); color:var(--c-accent-ink); text-decoration:none; font-weight:600; padding-inline:.7rem; }
+.call-head .num { display:none; font-variant-numeric:tabular-nums; }
+.nav { order:3; width:100%; }
+.nav ul { list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:0 1.25rem; }
+.nav li { flex:none; }
+.nav a { display:inline-flex; align-items:center; min-height:44px; color:var(--c-ink); text-decoration:none; font-size:var(--fs-00); font-weight:600; }
+.nav a:hover { text-decoration:underline; }
+
+/* ---------- Hero: the phone number is the display moment ---------- */
+.hero { padding-top:clamp(2rem,6vw,5rem); }
+.hero-tel { margin:0 0 clamp(1rem,2.5vw,1.75rem); max-width:none; }
+.hero-tel a {
+  display:inline-flex; flex-wrap:wrap; align-items:baseline; gap:0 .35em;
+  color:var(--c-accent); text-decoration:none; line-height:1;
+  font-variant-numeric:lining-nums tabular-nums;
+}
+.hero-tel a:hover .num, .hero-tel a:focus-visible .num { text-decoration:underline; text-decoration-thickness:2px; text-underline-offset:.12em; }
+.hero-tel .pfx { font-size:var(--fs-1); font-weight:400; color:var(--c-ink-soft); flex-basis:100%; margin-bottom:.35rem; }
+.hero-tel .num { font-size:var(--fs-tel); font-weight:300; letter-spacing:-0.01em; white-space:nowrap; }
+.hero h1 { margin-bottom:.4em; }
+.hero h1 .kind { display:block; font-size:var(--fs-1); font-weight:400; color:var(--c-ink-soft); margin-bottom:.2em; }
+.hero .sub { font-size:var(--fs-0); color:var(--c-ink-soft); max-width:48ch; }
+.actions { display:flex; flex-wrap:wrap; gap:.75rem; margin-top:1.5rem; }
+
+/* Skyline: drawn once, at the hero's base. "slice" = never stretched */
+/* Height follows the 6:1 viewBox, so wide screens never crop the peaks; below 576px the
+   96px minimum makes "slice" crop the sides instead (Pomagagnon stays centred). */
+.ridge { display:block; width:100%; height:auto; aspect-ratio:6 / 1; min-height:96px; margin-top:2.5rem; }
+.ridge-line   { fill:none; stroke:var(--c-ink); stroke-width:1.25; stroke-linejoin:round; stroke-linecap:round; vector-effect:non-scaling-stroke; }
+.ridge-labels path { fill:none; stroke:var(--c-ink-soft); stroke-width:.75; vector-effect:non-scaling-stroke; }
+.ridge-labels text { font:italic 13px var(--font); fill:var(--c-ink-soft); text-anchor:middle; } /* synthetic oblique: no italic font download */
+.ridge-labels { display:none; }
+
+/* ---------- Buttons ---------- */
+.btn { display:inline-flex; align-items:center; justify-content:center; gap:.5rem; min-height:48px; padding:.6rem 1.25rem; font:600 var(--fs-0)/1.2 var(--font); border-radius:var(--radius); text-decoration:none; border:1.5px solid transparent; cursor:pointer; }
+.btn-primary { background:var(--c-accent); color:var(--c-accent-ink); }
+.btn-primary:hover { background:color-mix(in srgb,var(--c-accent) 85%,var(--c-ink)); }
+.btn-secondary { background:transparent; color:var(--c-accent); border-color:var(--c-accent); }
+.btn-secondary:hover { background:color-mix(in srgb,var(--c-accent) 8%,transparent); }
+.btn:active { transform:translateY(1px); }
+.btn-gmaps { background:#1A73E8; color:#FFFFFF; }
+.btn-gmaps:hover { background:#1662C4; }
+.btn-amaps { background:#1D1D1F; color:#FFFFFF; }
+.btn-amaps:hover { background:#3A3A3C; }
+.map-ico { display:grid; place-items:center; width:26px; height:26px; flex:none; border-radius:7px; background:#FFFFFF; }
+.map-ico svg { width:18px; height:18px; }
+.btn[disabled] { opacity:.6; cursor:progress; }
+
+/* ---------- Sections ---------- */
+main > .section { padding-block:clamp(3rem,8vw,6rem); border-top:1px solid var(--c-rule); }
+.facts { margin:1.5rem 0 0; padding:0; display:grid; gap:.75rem; max-width:64ch; }
+.facts div { display:grid; gap:.1rem; }
+.facts dt { font-size:var(--fs-00); color:var(--c-ink-soft); }
+.facts dd { margin:0; }
+
+/* Treatments: a ruled list, not cards */
+.cure { margin:1.5rem 0 0; padding:0; }
+.cure > div { border-top:1px solid var(--c-rule); padding-block:1.25rem; }
+.cure dt { font-size:var(--fs-1); font-weight:600; line-height:1.3; margin-bottom:.25rem; }
+.cure dd { margin:0; max-width:60ch; color:var(--c-ink-soft); }
+
+/* Emergency: the only coloured block */
+.urgent { background:var(--c-alert-bg); border-left:6px solid var(--c-alert); border-radius:0 8px 8px 0; padding:clamp(1.25rem,4vw,2.5rem); max-width:48rem; }
+.urgent h2 { color:var(--c-alert); }
+.urgent .btn { width:100%; }
+
+/* Hours & location */
+.two { display:grid; gap:2.5rem; }
+.hours-note { font-size:var(--fs-1); line-height:1.45; }
+.hours { width:100%; max-width:28rem; border-collapse:collapse; font-variant-numeric:tabular-nums; }
+.hours caption { text-align:left; font-weight:600; padding-bottom:.5rem; }
+.hours th, .hours td { text-align:left; padding:.75rem .5rem .75rem 0; border-bottom:1px solid var(--c-rule); vertical-align:top; }
+.hours th { font-weight:600; }
+.hours .closed { color:var(--c-ink-soft); }
+.hours tr.is-today { background:var(--c-surface); }
+.hours tr.is-today th { font-weight:700; }
+.hours .today-tag { font-weight:400; font-size:var(--fs-00); color:var(--c-ink-soft); margin-left:.4rem; }
+address { font-style:normal; font-size:var(--fs-1); line-height:1.4; margin-bottom:1rem; }
+.note { color:var(--c-ink-soft); }
+.map-links { display:flex; flex-wrap:wrap; align-items:center; gap:.75rem; margin-top:1.25rem; }
+
+/* Contact & form */
+.contact-lines p { margin-bottom:.75rem; }
+.contact-lines .big { font-size:var(--fs-1); font-weight:600; font-variant-numeric:tabular-nums; }
+.sent-note { display:none; border-left:3px solid var(--c-accent); padding-left:.75rem; font-weight:600; }
+.sent-note:target { display:block; }
+.form-panel { margin-top:2.5rem; max-width:36rem; }
+.form { display:grid; gap:1.25rem; }
+.field label { display:block; font-weight:600; margin-bottom:.35rem; }
+.req { font-weight:400; color:var(--c-ink-soft); }
+.field input, .field textarea {
+  width:100%; min-height:48px; font:400 max(17px,var(--fs-0))/1.4 var(--font);
+  color:var(--c-ink); background:var(--c-surface); border:1.5px solid var(--c-ink-soft); border-radius:var(--radius); padding:.625rem .75rem;
+}
+.field input:hover, .field textarea:hover { border-color:var(--c-ink); }
+.field textarea { min-height:8rem; resize:vertical; }
+.field [aria-invalid="true"], .check [aria-invalid="true"] { border-color:var(--c-alert); outline:2px solid var(--c-alert); outline-offset:1px; }
+.help { font-size:var(--fs-00); color:var(--c-ink-soft); margin:.35rem 0 0; }
+.field-error { font-size:var(--fs-00); font-weight:600; color:var(--c-alert); margin:.35rem 0 0; }
+.check { display:flex; gap:.75rem; align-items:flex-start; }
+.check input { width:24px; height:24px; margin:.15rem 0 0; flex:none; accent-color:var(--c-accent); }
+.hp { position:absolute!important; left:-9999px; width:1px; height:1px; overflow:hidden; }
+.form-status { margin:0; font-weight:600; }
+.form-status:empty { display:none; }
+.form-status.ok { color:var(--c-ink); border-left:3px solid var(--c-accent); padding-left:.75rem; }
+.form-status.err { color:var(--c-alert); border-left:3px solid var(--c-alert); padding-left:.75rem; }
+
+/* ---------- Footer ---------- */
+.site-footer { background:var(--c-surface); border-top:1px solid var(--c-rule); }
+.legal { font-size:var(--fs-00); line-height:1.5; color:var(--c-ink-soft); padding-block:2.5rem; display:grid; gap:1.5rem; }
+.legal p { margin-bottom:.35rem; }
+.legal .credit { margin-top:1rem; font-size:.8rem; color:var(--c-ink-soft); }
+.legal address { font-size:inherit; line-height:inherit; margin:0; }
+.foot-links { list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:0 1.5rem; }
+.foot-links a { display:inline-flex; align-items:center; min-height:44px; }
+
+/* ---------- Mobile call bar: solid, always visible ---------- */
+.callbar {
+  position:fixed; inset:auto 0 0 0; z-index:50;
+  display:grid; grid-template-columns:minmax(0,1fr) auto; gap:8px;
+  padding:8px 12px calc(8px + env(safe-area-inset-bottom));
+  background:var(--c-paper); border-top:1px solid var(--c-rule);
+}
+.callbar .btn { padding-inline:.75rem; white-space:nowrap; }
+.callbar .num { display:none; font-weight:400; }
+.callbar :focus-visible { outline-color:var(--c-ink); outline-offset:2px; }
+body { padding-bottom:calc(var(--callbar-h) + env(safe-area-inset-bottom)); }
+.callbar .btn { min-height:48px; }
+@media (min-width:420px) { .callbar .num { display:inline; } }
+
+/* ---------- Cookie notice (design.md, "Cookie banner") ---------- */
+.cookie {
+  position:fixed; z-index:60;
+  left:.75rem; right:.75rem; bottom:calc(var(--callbar-h) + env(safe-area-inset-bottom) + .5rem);
+  background:var(--c-surface); color:var(--c-ink);
+  border:1px solid var(--c-card-edge); border-radius:var(--radius);
+  padding:1rem 3rem 1rem 1rem;
+}
+.cookie__text { font-size:var(--fs-00); line-height:1.5; margin:0; }
+.cookie__actions { display:flex; gap:.5rem; margin-top:.75rem; }
+.cookie__actions .btn { min-height:44px; padding-block:.4rem; font-size:var(--fs-00); }
+.cookie__actions [data-cookie="accept"], .cookie__actions [data-cookie="reject"] { flex:1; }
+.cookie__close {
+  position:absolute; top:.5rem; right:.5rem; width:44px; height:44px;
+  display:inline-flex; align-items:center; justify-content:center;
+  background:transparent; border:0; border-radius:var(--radius); color:var(--c-ink-soft); cursor:pointer;
+}
+.cookie__close:hover { color:var(--c-ink); }
+
+/* Legal pages */
+.prose h2 { font-size:var(--fs-1); font-weight:600; margin:2.25rem 0 .5rem; }
+.prose ul { padding-left:1.25rem; max-width:64ch; }
+.prose li { margin-bottom:.4rem; }
+.prose code { font-size:.9em; }
+
+@media (min-width:768px) {
+  .cookie { left:1.5rem; right:auto; max-width:26rem; }
+  .call-head .num { display:inline; }
+  .site-header .bar { min-height:72px; }
+  .brand span { flex-direction:row; align-items:baseline; gap:.6rem; }
+  .lang-link { font-size:var(--fs-0); }
+  .ridge { margin-top:3.5rem; }
+  .facts { grid-template-columns:auto 1fr; column-gap:2rem; }
+  .facts div { display:contents; }
+  .cure { display:grid; grid-template-columns:1fr 1fr; column-gap:3rem; }
+  .two { grid-template-columns:minmax(0,1.1fr) minmax(0,1fr); gap:3rem; }
+  .urgent .btn { width:auto; }
+  .legal { grid-template-columns:1.4fr 1fr; gap:3rem; }
+}
+
+@media (min-width:960px) {
+  .ridge-labels { display:inline; }
+}
+
+/* From 1100px: no call bar; the one-row header sticks to the top and carries the phone number. */
+@media (min-width:1100px) {
+  :root { --callbar-h:0px; --header-h:73px; }
+  .callbar { display:none; }
+  body { padding-bottom:0; }
+  .cookie { bottom:1.5rem; }
+  .site-header { position:sticky; top:0; z-index:40; background:var(--c-paper); }
+  .brand small { display:none; }
+  .nav { order:0; width:auto; margin-left:auto; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Left-to-right reveal with clip-path, not stroke-dasharray: with a non-scaling stroke Chrome measures
+     the dash in screen space and the line stopped short on wide screens (QA B1). Works for any path. */
+  .ridge-line { clip-path:inset(-20px 100% -20px -20px); animation:ridge-draw 1.6s cubic-bezier(.4,0,.2,1) .2s forwards; }
+  .ridge-labels { opacity:0; animation:ridge-fade .4s ease-out 1.4s forwards; }
+  @keyframes ridge-draw { to { clip-path:inset(-20px -20px -20px -20px); } }
+  @keyframes ridge-fade { to { opacity:1; } }
+  html { scroll-behavior:smooth; }
+  .btn, a { transition:background-color .12s, text-decoration-thickness .12s; }
+  .cookie.is-in { animation:cookie-in .2s ease-out both; }
+  @keyframes cookie-in { from { opacity:0; transform:translateY(8px); } }
+}
+
+@media print {
+  .nav, .callbar, .form-panel, .skip, .lang-link, .actions, .ridge, .cookie, .call-head, .foot-links { display:none!important; }
+  body { background:#fff; color:#000; padding:0; }
+  main > .section { padding-block:1rem; }
+  .site-footer { background:none; }
+}
+@media (prefers-color-scheme: dark) {
+  .btn-amaps { background:#F5F5F7; color:#1D1D1F; }
+  .btn-amaps:hover { background:#FFFFFF; }
+  .btn-amaps .map-ico { background:#1D1D1F; }
+}
